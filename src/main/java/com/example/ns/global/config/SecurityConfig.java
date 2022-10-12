@@ -38,13 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/user/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/user/my").authenticated()
 
-                .antMatchers(HttpMethod.GET, "/posts").authenticated()
-                .antMatchers(HttpMethod.POST, "/posts").authenticated()
-                .antMatchers(HttpMethod.PUT, "/posts/{id}").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/posts/{id}").authenticated()
-
-
-
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().disable()
