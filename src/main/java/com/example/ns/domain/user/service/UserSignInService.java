@@ -30,9 +30,11 @@ public class UserSignInService {
         }
 
         String access = jwtTokenProvider.generateAccessToken(request.getEmail());
+        String refresh = jwtTokenProvider.generateRefreshToken(request.getEmail());
 
         return TokenResponse.builder()
                 .accessToken(access)
+                .refreshToken(refresh)
                 .authority(user.getAuthority())
                 .build();
     }
