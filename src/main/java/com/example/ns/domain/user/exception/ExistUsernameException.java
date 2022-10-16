@@ -8,6 +8,6 @@ public class ExistUsernameException extends ProjectException {
             new ExistUsernameException();
 
     public ExistUsernameException(){
-        super(ErrorCode.ALREADY_JOINED_USERANME);
+        super(ErrorCode.ALREADY_JOINED_USERNAME);
     }
 }

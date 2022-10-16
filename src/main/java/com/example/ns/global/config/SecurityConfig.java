@@ -1,5 +1,7 @@
 package com.example.ns.global.config;
 
+import com.example.ns.global.security.jwt.JwtTokenFilter;
+import com.example.ns.global.security.jwt.JwtTokenProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+    private final JwtTokenProvider jwtTokenProvider;
     private final ObjectMapper objectMapper;
 
     @Bean
@@ -27,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
                 .cors().and()
                 .csrf().disable()
@@ -42,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().disable()
 
-                .logout();
+                .apply(new FilterConfig(jwtTokenProvider, objectMapper));
 
     }
 }

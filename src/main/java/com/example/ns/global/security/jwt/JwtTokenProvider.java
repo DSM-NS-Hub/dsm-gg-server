@@ -1,5 +1,7 @@
 package com.example.ns.global.security.jwt;
 
+import com.example.ns.domain.auth.domain.RefreshToken;
+import com.example.ns.domain.auth.domain.repository.RefreshTokenRepository;
 import com.example.ns.domain.user.domain.repository.UserRepository;
 import com.example.ns.global.exception.InvalidJwtException;
 import com.example.ns.global.security.auth.AuthDetailsService;
@@ -22,11 +24,24 @@ import java.util.Date;
 public class JwtTokenProvider {
     private final JwtProperties jwtProperties;
     private final AuthDetailsService authDetailsService;
+    private final RefreshTokenRepository refreshTokenRepository;
 
     public String generateAccessToken(String id){
         return generateToken(id, "access", jwtProperties.getAccessExp());
     }
 
+    public String generateRefreshToken(String id){
+        String refresh = generateToken(id, "refresh", jwtProperties.getRefreshExp());
+
+        refreshTokenRepository.save(
+                RefreshToken.builder()
+                        .email(id)
+                        .token(refresh)
+                        .timeToLive(jwtProperties.getRefreshExp())
+                        .build()
+        );
+        return refresh;
+    }
     public String generateToken(String id, String type, Long exp){
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())

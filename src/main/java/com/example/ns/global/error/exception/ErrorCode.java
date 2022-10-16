@@ -15,7 +15,7 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "USER-404-1", "User Not Found"),
 
     ALREADY_JOINED_EMAIL(409, "USER-409-1", "Email Already Joined"),
-    ALREADY_JOINED_USERANME(409, "USER-409-2", "Username Already Exist"),
+    ALREADY_JOINED_USERNAME(409, "USER-409-2", "Username Already Exist"),
 
     REFRESH_NOT_FOUND(404, "JWT-404-1", "RefreshToken Not Found");
 
