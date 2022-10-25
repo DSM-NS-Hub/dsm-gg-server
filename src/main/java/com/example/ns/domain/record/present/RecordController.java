@@ -1,14 +1,10 @@
 package com.example.ns.domain.record.present;
 
-import com.example.ns.domain.record.present.dto.request.SearchUserRequest;
-import com.example.ns.domain.record.present.dto.response.SearchUserResponse;
 import com.example.ns.domain.record.present.dto.response.SummonerResponse;
 import com.example.ns.domain.record.service.CallUserIdService;
+import com.example.ns.domain.record.service.FindMatchService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/search")
@@ -17,9 +13,17 @@ public class RecordController {
 
     private final CallUserIdService callUserIdService;
 
+    private final FindMatchService findMatchService;
+
     @PostMapping("/username")
     public SummonerResponse searchUser(@RequestParam String summonerName){
         summonerName = summonerName.replaceAll(" ","%20");
         return callUserIdService.callRiotAPISummonerByName(summonerName);
+    }
+
+    @PostMapping("/matches")
+    public String[] callMatches(@RequestParam String summonerName){
+        summonerName = summonerName.replaceAll(" ","%20");
+        return findMatchService.CallMatchesByPuuid(callUserIdService.callRiotAPISummonerByName(summonerName).getPuuid());
     }
 }
