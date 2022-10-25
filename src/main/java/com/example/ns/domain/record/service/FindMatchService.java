@@ -25,10 +25,9 @@ public class FindMatchService {
         String Url = serverUrl + "/lol/match/v5/matches/by-puuid/"+ puuid +"/ids" + "?start=" + start + "&count=" + count + "&api_key=" + mykey;
 
         HttpEntity<String> response = restTemplate.getForEntity(Url, String.class);
-        String special_char = "[^0-9a-zA-Z,]";
+        String special_char = "[^0-9a-zA-Z,_]";
         String tmp = response.getBody().replaceAll(special_char, "");
         result = tmp.split(",");
-
 
         return result;
     }
