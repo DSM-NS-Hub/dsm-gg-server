@@ -1,4 +1,4 @@
-package com.example.ns.domain.record.present.dto.response.match;
+package com.example.ns.domain.record.present.dto.request.match;
 
 import lombok.Getter;
 

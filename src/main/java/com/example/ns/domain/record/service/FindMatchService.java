@@ -19,7 +19,7 @@ public class FindMatchService {
     public String[] CallMatchesByPuuid(String puuid){
         RestTemplate restTemplate = new RestTemplate();
         int start = 0;
-        int count = 20;
+        int count = 10;
         String[] result;
 
         String Url = serverUrl + "/lol/match/v5/matches/by-puuid/"+ puuid +"/ids" + "?start=" + start + "&count=" + count + "&api_key=" + mykey;

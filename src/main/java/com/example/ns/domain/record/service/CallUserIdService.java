@@ -33,4 +33,14 @@ public class CallUserIdService {
 
         return response.getBody();
     }
+
+    public SummonerResponse callUserInfoByPuuid(String puuid){
+        RestTemplate restTemplate = new RestTemplate();
+
+        String Url = serverUrl + "/lol/summoner/v4/summoners/by-puuid/" + puuid + "?api_key=" + mykey;
+
+        HttpEntity<SummonerResponse> response = restTemplate.getForEntity(Url, SummonerResponse.class);
+
+        return response.getBody();
+    }
 }

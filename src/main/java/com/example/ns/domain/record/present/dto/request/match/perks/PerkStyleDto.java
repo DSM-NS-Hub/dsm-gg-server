@@ -1,4 +1,4 @@
-package com.example.ns.domain.record.present.dto.response.match.perks;
+package com.example.ns.domain.record.present.dto.request.match.perks;
 
 import lombok.Getter;
 

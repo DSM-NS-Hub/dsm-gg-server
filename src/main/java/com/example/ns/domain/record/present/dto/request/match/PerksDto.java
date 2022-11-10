@@ -1,6 +1,6 @@
-package com.example.ns.domain.record.present.dto.response.match;
+package com.example.ns.domain.record.present.dto.request.match;
 
-import com.example.ns.domain.record.present.dto.response.match.perks.PerkStatsDto;
+import com.example.ns.domain.record.present.dto.request.match.perks.PerkStatsDto;
 import lombok.Getter;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.example.ns.domain.record.present.dto.response;
 
-import com.example.ns.domain.record.present.dto.response.match.InfoDto;
-import com.example.ns.domain.record.present.dto.response.match.MetadataDto;
+import com.example.ns.domain.record.present.dto.request.match.InfoDto;
+import com.example.ns.domain.record.present.dto.request.match.MetadataDto;
 import lombok.Getter;
 
 @Getter

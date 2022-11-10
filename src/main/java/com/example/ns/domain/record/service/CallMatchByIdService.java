@@ -23,9 +23,6 @@ public class CallMatchByIdService {
 
         String Url = serverUrl + "/lol/match/v5/matches/" + matchId + "?api_key=" + mykey;
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-
         HttpEntity<MatchResponse> response = restTemplate.getForEntity(Url, MatchResponse.class);
 
         return response.getBody();
