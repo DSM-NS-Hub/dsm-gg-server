@@ -1,11 +1,10 @@
 package com.example.ns.domain.record.present;
 
-import com.example.ns.domain.record.present.dto.request.MasteryResponse;
-import com.example.ns.domain.record.present.dto.response.MasteryListResponse;
+import com.example.ns.domain.record.present.dto.request.MasteryRequest;
 import com.example.ns.domain.record.present.dto.response.MatchResponse;
+import com.example.ns.domain.record.present.dto.response.RankResponse;
 import com.example.ns.domain.record.present.dto.response.SummonerResponse;
 import com.example.ns.domain.record.service.*;
-import com.mysql.cj.xdevapi.JsonArray;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +24,8 @@ public class RecordController {
     private final CallMatchByIdService callMatchByIdService;
     private final FinalSearchService finalSearchService;
     private final CallMasteryService callMasteryService;
+
+    private final UserRankService userRankService;
 
     @PostMapping("/username")
     public SummonerResponse searchUser(@RequestParam String summonerName){
@@ -51,10 +52,16 @@ public class RecordController {
     }
 
     @PostMapping("/mastery/{summonerName}")
-    public List<MasteryResponse> userMastery(@PathVariable String summonerName) throws Exception {
+    public List<MasteryRequest> userMastery(@PathVariable String summonerName) throws Exception {
         log.info(summonerName);
         String summonerId = callUserIdService.callRiotAPISummonerByName(summonerName).getId();
         return callMasteryService.callMasteryBySummonerId(summonerId);
 
+    }
+
+    @PostMapping("/rank/{summonerName}")
+    public List<RankResponse> userRank(@PathVariable String summonerName) throws Exception {
+        String summonerId = callUserIdService.callRiotAPISummonerByName(summonerName).getId();
+        return userRankService.CallUserSoloRank(summonerId);
     }
 }

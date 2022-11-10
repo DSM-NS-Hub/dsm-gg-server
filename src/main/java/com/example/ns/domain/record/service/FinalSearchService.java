@@ -29,7 +29,7 @@ public class FinalSearchService {
             String matchJson = objectMapper.writeValueAsString(match);
             MatchResponse jsonToObject = objectMapper.readValue(matchJson, MatchResponse.class);
             List<String> users = userList(jsonToObject.getMetadata().getParticipants());
-            for(int j=0; j<10; j++){    
+            for(int j=0; j<10; j++){
                 jsonToObject.getMetadata().getParticipants().set(j, users.get(j));
             }
             result.add(jsonToObject);
@@ -44,5 +44,6 @@ public class FinalSearchService {
         }
         return participants;
     }
+
 }
 

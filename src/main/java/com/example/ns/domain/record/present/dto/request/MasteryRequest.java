@@ -3,7 +3,7 @@ package com.example.ns.domain.record.present.dto.request;
 import lombok.Getter;
 
 @Getter
-public class MasteryResponse {
+public class MasteryRequest {
     private Long championPointsUntilNextLevel;
     private Boolean chestGranted;
     private Long championId;
