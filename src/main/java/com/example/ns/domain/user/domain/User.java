@@ -1,5 +1,6 @@
 package com.example.ns.domain.user.domain;
 
+import com.example.ns.domain.user.present.dto.request.UpdateUserInfoRequest;
 import com.example.ns.global.enums.Authority;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -44,5 +45,9 @@ public class User {
         this.password = password;
         this.username = username;
         this.authority = authority;
+    }
+
+    public void update(UpdateUserInfoRequest request) {
+        this.username = request.getUsername();
     }
 }
