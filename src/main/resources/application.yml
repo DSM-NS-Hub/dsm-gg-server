@@ -8,7 +8,7 @@ spring:
     show-sql: true
 
   datasource:
-    url: jdbc:mysql://${DB_URL}/dsm_gg
+    url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -28,11 +28,3 @@ jwt:
 logging:
   level:
     root: info
-
-
-server:
-  tomcat:
-    connection-timeout: -1
-
-riot:
-  api-key = ${RIOT_API_KEY}
